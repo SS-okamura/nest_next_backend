@@ -1,6 +1,7 @@
 import { Comment } from './entities/comment.entity';
 import { DataSource } from 'typeorm';
 import { User } from './entities/user.entity';
+import { Task } from './entities/task.entity';
 
 export const AppDataSource = new DataSource({
   type: 'mysql', // MySQL の場合
@@ -11,6 +12,6 @@ export const AppDataSource = new DataSource({
   database: 'sample', // docker-compose.yml の MYSQL_DATABASE
   logging: true, // コンソール画面に実行したSQLが表示される
   synchronize: false, // true にすると migration が自動で実行されます。
-  entities: [Comment, User], // エンティティクラスを指定する（複数の場合はカンマで区切る）
+  entities: [Comment, User, Task], // エンティティクラスを指定する（複数の場合はカンマで区切る）
   migrations: ['dist/migration/*.js'], // dist ディレクトリ内の js ファイルを指定する
 });
