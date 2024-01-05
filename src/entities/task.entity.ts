@@ -29,7 +29,8 @@ export class Task {
   @UpdateDateColumn()
   updatedAt?: Date;
 
-  constructor(title: string) {
+  constructor(title?: string, status?: TaskStatus) {
     this.title = title;
+    this.status = status;
   }
 }
