@@ -4,16 +4,21 @@ import { TaskStatus } from 'src/enums/taskStatus';
 export class CreateTaskInput {
   @IsEmpty()
   @IsString()
-  private _title: string;
+  private title: string;
   @IsEmpty()
   @IsEnum(TaskStatus)
-  private _status: TaskStatus = TaskStatus.waiting;
+  private status: TaskStatus = TaskStatus.waiting;
+
+  constructor(title: string, status: TaskStatus) {
+    this.title = title;
+    this.status = status;
+  }
 
   getTitle(): string {
-    return this._title;
+    return this.title;
   }
 
   getStatus(): TaskStatus {
-    return this._status;
+    return this.status;
   }
 }
