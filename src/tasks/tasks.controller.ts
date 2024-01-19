@@ -10,6 +10,7 @@ import {
 import { TasksService } from './tasks.service';
 import { CreateTaskInput } from './VO/CreateTaskInput';
 import { UpdateTaskInput } from './VO/UpdateTaskInput';
+import { getTaskStatusFromString } from 'src/enums/taskStatus';
 
 @Controller('task')
 export class TasksController {
@@ -28,8 +29,12 @@ export class TasksController {
   }
 
   @Post()
-  async createTodo(@Body() input: CreateTaskInput) {
-    return this.tasksService.createTask(input);
+  async createTodo(@Body() input: { title: string; status: string }) {
+    const task = new CreateTaskInput(
+      input.title,
+      getTaskStatusFromString(input.status),
+    );
+    return this.tasksService.createTask(task);
   }
 
   @Put()
